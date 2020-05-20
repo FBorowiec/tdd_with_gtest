@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# VS Code objects
+.vscode
+.vscode/*
+
+# Bazel objects
+bazel-*
+bazel-*/
