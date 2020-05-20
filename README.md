@@ -59,3 +59,6 @@ The first layer of that net should be a suite of automated unit tests.
 ## _Bibliography:_
 * **Kent Beck** - _Test Driven Development: By example_
 * **Robert Marting** - _Clean Code: A handbook of Agile Software Craftsmanship_
+
+### Command example:
+bazel run //tdd_examples:fizzbuzz_test

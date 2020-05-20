@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-  name = "tdd_example",
+  name = "fizzbuzz_test",
   srcs = glob(["*.cpp",]),
   copts = [
     "-ggdb",
