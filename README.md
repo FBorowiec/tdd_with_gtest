@@ -56,9 +56,18 @@ The first layer of that net should be a suite of automated unit tests.
 2. Thou shall not write more of a unit test than is sufficient to fail, and not compiling is failing
 3. Thou shall not write more production code than is sufficient to pass the currently failing unit test
 
+## **What is Google Test?**
+* It is an open-source C++ unit testing framework from Google
+* Provides the ability to create Tests, Test Cases and Test Suites (Fixtures)
+* Provides several types of assert macros for generating unit test failures based on boolean, binary and string comparisons
+
+
+## **Command line arguments**:
+Many command line options available for controlling how tests are run:
+* <code>--gtest_filter</code> : Regulare epresions which indicate which tests should be run in the format of: TestCaseRegEx:TestRegEx
+* <code>--gtest_repear</code> : Repeats running the tests the specified number of times. Can be very helpful for ensuring you don't have any flaky tests.
+* <code>--gtest_shuffle</code> : Runs the tests in a randomized order. Helps ensure no dependencies between the tests (as it shouldn't matter what order the tests are executed in)
+
 ## _Bibliography:_
 * **Kent Beck** - _Test Driven Development: By example_
 * **Robert Marting** - _Clean Code: A handbook of Agile Software Craftsmanship_
-
-### Command example:
-bazel run //tdd_examples:fizzbuzz_test

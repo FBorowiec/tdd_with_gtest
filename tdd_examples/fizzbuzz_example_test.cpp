@@ -41,7 +41,12 @@ void IsFizzBuzz(int value, std::string expected_result)
   ASSERT_STREQ(expected_result.c_str(), result.c_str());
 }
 
-// Main included in gtest
+/**
+ * No need for main function as it is included in gtest.
+ * The TEST macro defines an individual test for a particular test case.
+ * Tests from the same test  cases will be grouped together in the execution output.
+ * Test case and test names should be valid C++ identifiers and should not use the wildcard "_"
+ */
 TEST(FizzBuzzTest, Given1_ThenPrint1)
 {
   IsFizzBuzz(1, "1");
