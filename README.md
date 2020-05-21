@@ -2,12 +2,10 @@
 
 _Examples of googletest usage for Test Driven Development_
 
-
 ## **MOTIVATION:**
 
 It is necessary to have a multilayered safety net of test in place that will catch any bugs that might get introduced.
 The first layer of that net should be a suite of automated unit tests.
-
 
 ## **Unit tests**:
 * Verify the code at a level of functions and classes
