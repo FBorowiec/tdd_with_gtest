@@ -38,3 +38,6 @@
 # Bazel objects
 bazel-*
 bazel-*/
+
+# Callgrind objects
+callgrind*
