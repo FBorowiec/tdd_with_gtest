@@ -41,3 +41,6 @@ bazel-*/
 
 # Callgrind objects
 callgrind*
+
+# Clang static analyzer objects
+*.plist

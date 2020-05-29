@@ -5,6 +5,16 @@ Static program analysis is the analysis of computer software that is performed w
 
 The term is usually applied to the analysis performed by an automated tool, with human analysis being called program understanding, program comprehension, or code review. Software inspections and software walkthroughs are also used in the latter case.
 
+## **Clang Check**
+The Clang Static Analyzer is a source code analysis tool that finds bugs in C, C++, and Objective-C programs. The analyzer is 100% open source and is part of the Clang project. Like the rest of Clang, the analyzer is implemented as a C++ library that can be used by other tools and applications.
+
+### **Running <code>clang-check</code>**
+Do not forget the <code>--</code> at the end of the command.
+* <code>clang-check -analyze _/path/to/source/code.cpp_ --</code>
+
+Running clang-check recursively in the project:
+* <code>find _path/to/project_ -name '*.cpp'|xargs clang-check -analyze</code>
+
 ## **Clang Format**
 _ClangFormat_ describes a set of tools that are built on top of _LibFormat_. It can support your workflow in a variety of ways including a standalone tool and editor integrations.
 
