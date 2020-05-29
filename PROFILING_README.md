@@ -11,7 +11,7 @@ Because they can exhaust available system memory as an application runs, memory 
 Valgrind is an instrumentation framework for building dynamic analysis tools. It can automatically detect many memory management and threading bugs, and profile your programs in detail.
 
 ### **Using vallgrind with Bazel**:
-<code>bazel run --copt='-ggdb, -O0' -c dbg --run_under='vallgrind --leak-check=yes' //path/to:target</code>
+<code>bazel run --copt='-ggdb, -O0' -c dbg --run_under='valgrind --leak-check=yes' //path/to:target</code>
 
 ### **Callgrind**:
 Callgrind is a call-graph generating cache and branch prediction profiler.
