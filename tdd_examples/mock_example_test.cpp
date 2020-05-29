@@ -47,27 +47,24 @@
 #include <iostream>
 #include <memory>
 
-#include "gtest/gtest.h"
 #include "gmock/gmock.h"  // important to include gmock as well as gtest
+#include "gtest/gtest.h"
 
-class QeueInterface
-{
+class QeueInterface {
  public:
   virtual ~QeueInterface() {}
   virtual void enqeue(int data) = 0;
   virtual int deqeue() = 0;
 };
 
-class MockQeue : public QeueInterface
-{
+class MockQeue : public QeueInterface {
  public:
   // MOCK_METHODn : The n number stands for the amount of arguments passed
   MOCK_METHOD0(deqeue, int());
   MOCK_METHOD1(enqeue, void(int data));
 };
 
-class DataHolder
-{
+class DataHolder {
  public:
   DataHolder(std::unique_ptr<QeueInterface> qeue) : qeue(std::move(qeue)) {}
   void AddData(int data) { qeue->enqeue(data); }
@@ -77,17 +74,14 @@ class DataHolder
   std::unique_ptr<QeueInterface> qeue;
 };
 
-namespace
-{
+namespace {
 
-TEST(GMockTests, CanInstantiateDataHolder)
-{
+TEST(GMockTests, CanInstantiateDataHolder) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dg(std::move(MyMockObj));
 }
 
-TEST(GMockTests, CanAddData)
-{
+TEST(GMockTests, CanAddData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dh(std::move(MyMockObj));
 
@@ -95,8 +89,7 @@ TEST(GMockTests, CanAddData)
   dh.AddData(1);
 }
 
-TEST(GMockTests, CanAddAndGetData)
-{
+TEST(GMockTests, CanAddAndGetData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dh(std::move(MyMockObj));
 

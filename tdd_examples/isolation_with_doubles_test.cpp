@@ -24,8 +24,7 @@
 
 #include "gtest/gtest.h"
 
-namespace
-{
+namespace {
 
 class MyInterface {};
 class DBInterface {};
@@ -35,8 +34,7 @@ class DBInterface {};
  * Dummy objects expect to never be used and will generally throw an exception if one
  * of their methods is actually called.
  */
-class MyDummy : public MyInterface
-{
+class MyDummy : public MyInterface {
  public:
   void SomeFunction() { throw "I shouldn't be called!"; }
 };
@@ -46,8 +44,7 @@ class MyDummy : public MyInterface
  * Stubs are different thatn dummy test doubles in that they do expect to be called
  * and return canned data.
  */
-class MyStub : public MyInterface
-{
+class MyStub : public MyInterface {
  public:
   int SomeFunction() { return 0; }
 };
@@ -57,10 +54,10 @@ class MyStub : public MyInterface
  * Fake objects provide what is usually a simplified implementation of an interface
  * that is functional but not appropriate for production (i.e. an in memory database)
  */
-class MyTestDB : public DBInterface
-{
+class MyTestDB : public DBInterface {
  public:
   void PushData(int data) { data_items.push_back(data); }
+
  protected:
   std::vector<int> data_items;
 };
@@ -70,10 +67,10 @@ class MyTestDB : public DBInterface
  * Spy objects save the parameters that were passed into them so they can be analyzed
  * by the test
  */
-class MySpy : public DBInterface
-{
+class MySpy : public DBInterface {
  public:
   void SomeFunction(int param) { saved_param = param; }
+
  protected:
   int saved_param;
 };
@@ -83,10 +80,12 @@ class MySpy : public DBInterface
  * Mock objects are the most interlligent test double. They are setup with expectations
  * on how they will be called and will throw exceptions when those expectations are not met.
  */
-class MyMock : public DBInterface
-{
+class MyMock : public DBInterface {
  public:
-  void SomeFunction(int param) { if (param != 1) throw "I shouldn't be called!"; }
+  void SomeFunction(int param) {
+    if (param != 1) throw "I shouldn't be called!";
+  }
+
  protected:
   int saved_param;
 };

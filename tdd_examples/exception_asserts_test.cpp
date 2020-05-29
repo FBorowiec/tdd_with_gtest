@@ -10,8 +10,7 @@
 
 #include "gtest/gtest.h"
 
-namespace
-{
+namespace {
 
 /**
  * Google Test Asserts perform checks that determine if a test passes of fails.
@@ -31,24 +30,20 @@ namespace
  *                     between the floats
  */
 
-void CallIt()
-{
-  try
-  {
+void CallIt() {
+  try {
     // bitset constructor throws an invalid_argument if initialized
     // with a string containing characters other than 0 and 1
-    std::bitset<5> mybitset (std::string("01234"));
-  }
-  catch (const std::invalid_argument& ia) {
+    std::bitset<5> mybitset(std::string("01234"));
+  } catch (const std::invalid_argument& ia) {
     throw ia;
   }
 }
 
-TEST(ExceptionsTest, ExceptionAsserts)
-{
+TEST(ExceptionsTest, ExceptionAsserts) {
   ASSERT_THROW(CallIt(), std::invalid_argument);  // Passes!
-  ASSERT_ANY_THROW(CallIt());  // Passes!
-  EXPECT_NO_THROW(CallIt());  // FAILS!
+  ASSERT_ANY_THROW(CallIt());                     // Passes!
+  EXPECT_NO_THROW(CallIt());                      // FAILS!
 }
 
 }  // namespace

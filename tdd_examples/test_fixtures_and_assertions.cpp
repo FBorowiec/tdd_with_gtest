@@ -20,11 +20,9 @@
 
 #include "gtest/gtest.h"
 
-namespace
-{
+namespace {
 
-class TestFixtureExample : public ::testing::Test
-{
+class TestFixtureExample : public ::testing::Test {
  public:
   TestFixtureExample() {}
   void SetUp() override {}
@@ -50,16 +48,14 @@ class TestFixtureExample : public ::testing::Test
  */
 
 // Test names must be unique
-TEST_F(TestFixtureExample, BasicComparisonAsserts)
-{
-  ASSERT_TRUE(1 == 1);  // Passes!
+TEST_F(TestFixtureExample, BasicComparisonAsserts) {
+  ASSERT_TRUE(1 == 1);   // Passes!
   ASSERT_FALSE(1 == 2);  // Passes!
-  EXPECT_TRUE(1 == 2);  // FAILS - won't stop the test
+  EXPECT_TRUE(1 == 2);   // FAILS - won't stop the test
   EXPECT_FALSE(1 == 1);  // FAILS!
 }
 
-TEST_F(TestFixtureExample, BinaryComparisonAsserts)
-{
+TEST_F(TestFixtureExample, BinaryComparisonAsserts) {
   ASSERT_EQ(1, 1);  // Passes!
   ASSERT_NE(1, 2);  // Passes!
   ASSERT_LT(1, 2);  // Passes!
@@ -68,19 +64,17 @@ TEST_F(TestFixtureExample, BinaryComparisonAsserts)
   ASSERT_GE(2, 2);  // Passes!
 }
 
-TEST_F(TestFixtureExample, StringComparisonAsserts)
-{
+TEST_F(TestFixtureExample, StringComparisonAsserts) {
   ASSERT_EQ(std::string("1"), std::string("1"));  // Passes!
   ASSERT_NE(std::string("a"), std::string("b"));  // Passes!
-  ASSERT_STREQ("a", "a");  // Passes!
-  ASSERT_STRNE("a", "b");  // Passes!
-  ASSERT_STRCASEEQ("A", "a");  // Passes!
-  ASSERT_STRCASENE("A", "b");  // Passes!
+  ASSERT_STREQ("a", "a");                         // Passes!
+  ASSERT_STRNE("a", "b");                         // Passes!
+  ASSERT_STRCASEEQ("A", "a");                     // Passes!
+  ASSERT_STRCASENE("A", "b");                     // Passes!
 }
 
-TEST_F(TestFixtureExample,FloatingPointValuesComparisonAsserts)
-{
-  ASSERT_FLOAT_EQ(1.0001f, 1.0001f);  // Passes!
+TEST_F(TestFixtureExample, FloatingPointValuesComparisonAsserts) {
+  ASSERT_FLOAT_EQ(1.0001f, 1.0001f);   // Passes!
   ASSERT_DOUBLE_EQ(1.0001f, 1.0001f);  // Passes!
   ASSERT_NEAR(1.0001, 1.0001, .0001);  // Passes!
   EXPECT_NEAR(1.0001, 1.0003, .0001);  // FAILS!
