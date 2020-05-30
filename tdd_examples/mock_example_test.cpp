@@ -78,10 +78,10 @@ namespace {
 
 TEST(GMockTests, CanInstantiateDataHolder) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
-  DataHolder dg(std::move(MyMockObj));
+  DataHolder dh(std::move(MyMockObj));
 }
 
-TEST(GMockTests, CanAddData) {
+TEST(GMockTests, DISABLED_CanAddData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dh(std::move(MyMockObj));
 
@@ -89,7 +89,7 @@ TEST(GMockTests, CanAddData) {
   dh.AddData(1);
 }
 
-TEST(GMockTests, CanAddAndGetData) {
+TEST(GMockTests, DISABLED_CanAddAndGetData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dh(std::move(MyMockObj));
 
