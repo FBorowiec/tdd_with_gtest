@@ -57,13 +57,6 @@ class QeueInterface {
   virtual int deqeue() = 0;
 };
 
-class MockQeue : public QeueInterface {
- public:
-  // MOCK_METHODn : The n number stands for the amount of arguments passed
-  MOCK_METHOD0(deqeue, int());
-  MOCK_METHOD1(enqeue, void(int data));
-};
-
 class DataHolder {
  public:
   DataHolder(std::unique_ptr<QeueInterface> qeue) : qeue(std::move(qeue)) {}
@@ -76,25 +69,41 @@ class DataHolder {
 
 namespace {
 
+class MockQeue : public QeueInterface {
+ public:
+  // MOCK_METHODn : The n number stands for the amount of arguments passed
+  MOCK_METHOD0(deqeue, int());
+  MOCK_METHOD1(enqeue, void(int data));
+};
+
 TEST(GMockTests, CanInstantiateDataHolder) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
   DataHolder dh(std::move(MyMockObj));
 }
 
-TEST(GMockTests, DISABLED_CanAddData) {
+TEST(GMockTests, CanAddData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
+
+  /**
+   * Data holder uses a raw pointer but we still need access to the MyMockObj!
+   * So prior to moving it to the DataHolder let's make a raw pointer to the MockQeue
+   */
+  MockQeue* rawMockQeue = MyMockObj.get();
+
   DataHolder dh(std::move(MyMockObj));
 
-  EXPECT_CALL(*MyMockObj, enqeue(::testing::_));
+  EXPECT_CALL(*rawMockQeue, enqeue(::testing::_));
   dh.AddData(1);
 }
 
-TEST(GMockTests, DISABLED_CanAddAndGetData) {
+TEST(GMockTests, CanAddAndGetData) {
   std::unique_ptr<MockQeue> MyMockObj(new MockQeue);
+  MockQeue* rawMockQeue = MyMockObj.get();
+
   DataHolder dh(std::move(MyMockObj));
 
-  EXPECT_CALL(*MyMockObj, enqeue(1));
-  EXPECT_CALL(*MyMockObj, deqeue()).WillOnce(::testing::Return(1));
+  EXPECT_CALL(*rawMockQeue, enqeue(1));
+  EXPECT_CALL(*rawMockQeue, deqeue()).WillOnce(::testing::Return(1));
 
   dh.AddData(1);
   int data = dh.GetData();
