@@ -9,6 +9,5 @@ pipeline {
         archiveArtifacts(artifacts: 'bazel-*', fingerprint: true)
       }
     }
-
   }
 }
