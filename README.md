@@ -7,6 +7,8 @@ _Examples of googletest usage for Test Driven Development_
 It is necessary to have a multilayered safety net of test in place that will catch any bugs that might get introduced.
 The first layer of that net should be a suite of automated unit tests.
 
+_"Making large changes without tests is like doing aerial gymnastics without a net."_ - **Michael Feathers**, unit tester and author of Working Effectively with Legacy Code
+
 ## **Unit tests**:
 * Verify the code at a level of functions and classes
 * Perform negative and positive test cases at the lowest level of the code
