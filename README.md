@@ -65,8 +65,12 @@ _"Making large changes without tests is like doing aerial gymnastics without a n
 ## **Command line arguments**:
 Many command line options available for controlling how tests are run:
 * <code>--gtest_filter</code> : Regular expresions which indicate which tests should be run in the format of: TestCaseRegEx:TestRegEx
-* <code>--gtest_repear</code> : Repeats running the tests the specified number of times. Can be very helpful for ensuring you don't have any flaky tests.
+* <code>--gtest_repeat</code> : Repeats running the tests the specified number of times. Can be very helpful for ensuring you don't have any flaky tests.
 * <code>--gtest_shuffle</code> : Runs the tests in a randomized order. Helps ensure no dependencies between the tests (as it shouldn't matter what order the tests are executed in)
+
+_Example:_
+
+<code>bazel run //path/to/unit:test -- --gtest_shuffle</code>
 
 ## **Best practices**:
 * Write the next simplest test case

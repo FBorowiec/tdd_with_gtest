@@ -89,7 +89,7 @@ When your repository have a valid Jenkinsfile you can create a new pipeline. Cho
 GitHub requires an access token.
 
 To generate a new token go to:
-1. > Your GitHub profile settings
+1.  > Your GitHub profile settings
 2.  > Developper settings
 3.  > Personal access tokens
 4.  > Generate new token:
