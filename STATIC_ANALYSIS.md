@@ -15,6 +15,8 @@ Do not forget the <code>--</code> at the end of the command.
 Running clang-check recursively in the project:
 * <code>find _path/to/project_ -name '*.cpp'|xargs clang-check -analyze</code>
 
+Use <url>https://cppinsights.io</url> for insights on how the code really looks like for the compiler.
+
 ## **Clang Format**
 _ClangFormat_ describes a set of tools that are built on top of _LibFormat_. It can support your workflow in a variety of ways including a standalone tool and editor integrations.
 
