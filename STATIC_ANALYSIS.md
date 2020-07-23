@@ -1,23 +1,29 @@
 # Static analysis
 
-## **Motivation**:
+## **Motivation**
+
 Static program analysis is the analysis of computer software that is performed without actually executing programs, in contrast with dynamic analysis, which is analysis performed on programs while they are executing. In most cases the analysis is performed on some version of the source code, and in the other cases, some form of the object code.
 
 The term is usually applied to the analysis performed by an automated tool, with human analysis being called program understanding, program comprehension, or code review. Software inspections and software walkthroughs are also used in the latter case.
 
 ## **Clang Check**
+
 The Clang Static Analyzer is a source code analysis tool that finds bugs in C, C++, and Objective-C programs. The analyzer is 100% open source and is part of the Clang project. Like the rest of Clang, the analyzer is implemented as a C++ library that can be used by other tools and applications.
 
 ### **Running <code>clang-check</code>**
-Do not forget the <code>--</code> at the end of the command.
+
+Do not forget the <code>--</code> at the end of the command
+
 * <code>clang-check -analyze _/path/to/source/code.cpp_ --</code>
 
 Running clang-check recursively in the project:
+
 * <code>find _path/to/project_ -name '*.cpp'|xargs clang-check -analyze</code>
 
 Use <url>https://cppinsights.io</url> for insights on how the code really looks like for the compiler.
 
 ## **Clang Format**
+
 _ClangFormat_ describes a set of tools that are built on top of _LibFormat_. It can support your workflow in a variety of ways including a standalone tool and editor integrations.
 
 ### **Configuring Style with <code>clang-format</code>**
@@ -27,7 +33,8 @@ _ClangFormat_ describes a set of tools that are built on top of _LibFormat_. It 
 When using <code>-style=file</code>, <code>clang-format</code> for each input file will try to find the <code>.clang-format</code> file located in the closest parent directory of the input file. When the standard input is used, the search is started from the current directory.
 
 The <code>.clang-format</code> file uses YAML format:
-```
+
+```cpp
 key1: value1
 key2: value2
 # A comment.
@@ -50,20 +57,23 @@ When specifying configuration in the <code>-style=</code> option, the same confi
 
 * <code>-style='{key1: value1, key2: value2, ...}'</code>
 
-Therefore to change identation width from the default 4 to 2:
+Therefore to change indentation width from the default 4 to 2:
+
 * <code>clang-format -style='{BasedOnStyle: Google, IndentWidth: 2}' -dump-config > .clang-format</code>
 
 Changing column limit inside the Google style and IndentWidth = 2:
+
 * <code>clang-format -style='{BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 120}' -dump-config > .clang-format</code>
 
-To execute clang-format following the conent of the .clang-format file:
+To execute clang-format following the content of the .clang-format file:
+
 * <code>clang-format -i -style=file /path/to/src</code>
 
 ### **Disabling Formatting on a Piece of Code**
 
 Clang-format understands also special comments that switch formatting in a delimited range. The code between a comment <code>// clang-format off</code> or <code>/\* clang-format off \*/</code> up to a comment <code> // clang-format on</code> or <code>/\* clang-format on \*/</code> will not be formatted. The comments themselves will be formatted (aligned) normally.
 
-```
+```cpp
 int formatted_code;
 // clang-format off
     void    unformatted_code  ;
