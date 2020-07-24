@@ -147,22 +147,75 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 ### **Things good to know about AFL**
 
 Parallel fuzzing! (Up to $(nproc) instances)
-- Master fuzz process
-- ...
 
-### **Better AFL performance
+- Master fuzz process:
 
-- /etc/default/grub:
-  - Disable all mitigations (spectre)
-- Before running AFL after a reboot:
-  - afl-system-config (otherwise AFL won't run!)
+```bash
+afl-fuzz -M fuzzer0 ...
+```
+
+- Child fuzz processes (nproc - 1):
+
+```bash
+afl-fuzz -S fuzzer1 ...
+afl-fuzz -S fuzzer2 ...
+```
+
+### **Better AFL performance**
+
+- /etc/default/grub: Disable all mitigations (spectre):
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet ibpb=off ibrs=off
+kpti=off l1tf=off mds=off mitigations=off no_stf_barrier
+noibpb noibrs nopcid nopti nospec_store_bypass_disable
+nospectre_v1 nospectre_v2 pcid=off pti=off
+spec_store_bypass_disable=off spectre_v2=off
+stf_barrier=off"
+```
+
+- Before running AFL after a reboot (otherwise AFL won't run!):
+
+```bash
+afl-system-config
+```
+
+## Hands-on
+
+Get AFL++:
+
+```bash
+git clone https://github.com/AFLplusplus/AFLplusplus
+```
+
+Compile and install:
+
+```bash
+export LLVM_CONFIG=llvm-config-VERSION
+cd AFLplusplus
+make source-only
+sudo make install
+```
+
+Get the AFL++ docker container:
+
+```bash
+docker pull aflplusplus/aflplusplus
+```
+
+Run the container (and add a –v /src:/dst exchange directory!)
+
+```bash
+docker run -ti -v /tmp:/share aflplusplus/aflplusplus
+```
 
 ## **Libfuzzer source code coverage fuzzer**
 
 - Fuzzing libraries and functions
 - Triggered by the Google Chrome team a few months after AFL was released and seen to be very successful
 - Now incorporated in llvm since 6.0
-- Specifically  desined to test functions and library calls
+- Specifically  designed to test functions and library calls
+- Unlike any other fuzzers, it stops at the first crash
 
 ### **Libfuzzer workflow**
 
