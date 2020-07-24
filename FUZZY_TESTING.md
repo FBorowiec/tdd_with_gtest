@@ -85,7 +85,7 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 
 ### **Fuzzing steps**
 
-![fuzzying steps](images/fuzzing.png)
+![fuzzying steps](fuzzing/images/fuzzing.png)
 
 ## **Two main fuzzing areas**
 
@@ -128,8 +128,9 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 1. Coverage information is made available to AFL via share memory
 2. Coverage information is gathered by instrumenting each branch
 
-![afl overview](images/afl_internals.png)
-![afl whole view](images/afl_internals_whole.png)
+![afl overview](fuzzing/images/afl_internals.png)
+
+![afl whole view](fuzzing/images/afl_internals_whole.png)
 
 ### **AFL good & bad**
 
