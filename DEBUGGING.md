@@ -45,7 +45,7 @@ Example: `bazel build --copt=-O0 --copt=-ggdb -c=dbg //...`
 **rr** aspires to be your primary C/C++ debugging tool for Linux, replacing — well, enhancing — gdb. You record a failure once, then debug the recording, deterministically, as many times as you want. The same execution is replayed every time.
 
 Usage:
-[rr examples](https://github.com/mozilla/rr/wiki/Usage)
+[rr usage examples](https://github.com/mozilla/rr/wiki/Usage)
 
 ## **Command line arguments**
 
@@ -54,7 +54,7 @@ Usage:
 3. Moving around: `b` *source.cpp* - set breakpoint, `r` - run, `n` - next, `c` - continue, `p` *variable* - observe
 4. `tui enable` / `tui disable` - GUI
 
-[gdb cheatsheet](http://www.yolinux.com/TUTORIALS/GDB-Commands.html)
+[**gdb** cheatsheet](http://www.yolinux.com/TUTORIALS/GDB-Commands.html)
 
 ## **Compile errors**
 

@@ -35,7 +35,7 @@
 
 ### **The fuzzing quality triangle**
 
-```cpp
+```bash
            Speed
            /    \
           /      \
@@ -92,6 +92,8 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 1. Coverage guided random fuzzing (usually based on source code [whitebox/greybox])
 2. Hammering and interface with a fuzzer tool which sends specific values (blackbox)
 
+*The result is very different, even if they fuzz the same thing!*
+
 ### **1. Coverage guided**
 
 - Very good code coverage
@@ -114,6 +116,8 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 - Some by blackbox protocol fuzzing (meta bugs)
 
 ## **AFL++ source code coverage fuzzer**
+
+![afl how does it look like](fuzzing/images/afl++.png)
 
 ### **AFL workflow**
 
@@ -147,7 +151,7 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 
 ### **Things good to know about AFL**
 
-Parallel fuzzing! (Up to $(nproc) instances)
+Parallel fuzzing! (Up to `$(nproc)` instances)
 
 - Master fuzz process:
 
@@ -164,7 +168,7 @@ afl-fuzz -S fuzzer2 ...
 
 ### **Better AFL performance**
 
-- /etc/default/grub: Disable all mitigations (spectre):
+- /etc/default/grub: Disable all mitigation (spectre):
 
 ```bash
 GRUB_CMDLINE_LINUX_DEFAULT="quiet ibpb=off ibrs=off
@@ -181,7 +185,16 @@ stf_barrier=off"
 afl-system-config
 ```
 
-## Hands-on
+## **Hands-on - COMPILE YOURSELF**
+
+Preparation:
+
+```bash
+$ apt install libtool libtool-bin python libboost-all-dev pixman autoconf automake cmake build-essential clang-9 libclang-common-9-dev protobuf-compiler libprotobuf-dev ninja-build pkg-config
+$ git clone https://github.com/AFLplusplus/AFLplusplus
+$ cd AFLplusplus; make source-only
+$ sudo make install
+```
 
 Get AFL++:
 
@@ -198,6 +211,8 @@ make source-only
 sudo make install
 ```
 
+## **Hands-on - DOCKER**
+
 Get the AFL++ docker container:
 
 ```bash
@@ -210,41 +225,94 @@ Run the container (and add a –v /src:/dst exchange directory!)
 docker run -ti -v /tmp:/share aflplusplus/aflplusplus
 ```
 
-## **Libfuzzer source code coverage fuzzer**
+### **Targets**
 
-- Fuzzing libraries and functions
-- Triggered by the Google Chrome team a few months after AFL was released and seen to be very successful
-- Now incorporated in llvm since 6.0
-- Specifically  designed to test functions and library calls
-- Unlike any other fuzzers, it stops at the first crash
+- [libtiff](http://download.osgeo.org/libtiff/tiff-4.0.4.zip)
+- [libjpeg](https://sourceforge.net/projects/libjpeg/files/libjpeg/6b/jpegsrc.v6b.tar.gz/download)
+- [libjpeg-turbo](https://sourceforge.net/projects/libjpeg-turbo/files/1.3.1/libjpeg-turbo-1.3.1.tar.gz/download)
 
-### **Libfuzzer workflow**
+*Or choose your own.*
 
-1. Include the *libfoo.h* library
+### **Let’s try it out**
+
+- Download an old version of libjpeg, libtiff, libpng, libarchive, libsndfile, etc.
+- `cd libTARGET-VERSION`
+- `CC=afl-clang-fast CXX=afl-clang-fast++ ./configure --disable-shared`
+- `make`
+- Run AFL
+  - `mkdir in`
+  - `cp ~/INPUT_FILES/* in/`
+  - `sudo afl-system-config afl-fuzz -i in -o out - ./TARGET @@`
+
+_This can take a long time. **Always check first that your command line with the test input file works well!**_
+
+### **Better performances**
+
+AFL llvm_mode has options for better path discovery and solving:
+
+- `export AFL_LLVM_LAF_SPLIT_SWITCHES=1`
+- `exportAFL_LLVM_LAF_SPLIT_FLOATS=1`
+- `export AFL_LLVM_LAF_SPLIT_COMPARES=1`
+- `export AFL_LLVM_LAF_TRANSFORM_COMPARES=1`
+- `export AFL_LLVM_INSTRUMENT_LIST=filelist.txt`
+
+### **What do we do with the crashes?**
+
+- Test cases that crashed the target are in ./out/crashes/
+- Trace the program with that crash input file. If necessary, recompile with debug
+
+`ulimit -c unlimited./PROGRAM out/crashes/id:0...gdb ./PROGRAM core`
+
+### **Showstoppers - hands on**
+
+Checksums, HMAC checks etc. -fuzzers have difficulties handling that. Solutions:
+
+- Use a postprocess function library, see AFL_CUSTOM_MUTATOR_LIBRARY and experimental/custom_mutators/*.c
+- Disable in the source code:
 
 ```cpp
-#include <std.h>
-#include <stddef.h>
-#include <libfoo.h>
-...
+#ifdef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
+  return 0;
+#endif
+  if (check_hmac(input, hmac) != 0)
+    return -1;
 ```
 
-## **Structure-aware fuzzing**
+### **How to make it better**
 
-...
+Use the newest LLVM you can (llvm_modesupports  3.3 -11)
 
-## **How to fuzz complex targets**
+`CC=afl-clang-fast CXX=afl-clang-fast++`
 
-...
+### **How long to run AFL? Coverage**
 
-## **How to run fuzzing campaigns**
+A week is a good standard, but complex input should run up to a month and longer.
+With smaller input sizes symbolic execution based fuzzers are a good addition (e.g. Angora, QSym).
 
-- Libfuzzer can be run with input arguments:
-  `./fuzz output_dir/ input_dir/`
+- If the fuzzer ran an hour, a day, a week ... what coverage was achieved?
+- Maybe important parts were not reached?
+- We need a way to assess what afl could cover!
 
-### **Libfuzzer good & bad**
+### **afl-cov**
 
-1. **Good**: fast
-2. **Good**: for developers
-3. **Bad**: ...
-...
+We use gcc's `gcov` feature for this, and afl-cov is a great wrapper around this:
+
+`git clone https://github.com/vanhauser-thc/afl-cov`
+
+Now we need to install what we need additionally:
+
+`sudo apt install gcc lcov python-subprocess32`
+
+We need to compile the target again with coverage information:
+
+- `cp-r TARGET TARGET-cov`
+- `cd TARGET-cov`
+- `make clean`
+- `/afl-cov/afl-cov-build.sh ./configure --disable-shared`
+- `make`
+
+During the fuzzing we can generate statistics (from the TARGET-cov directory):
+
+`/afl-cov/afl-cov.sh ../target/out/"./target @@"`
+
+Afterwards open the generated index.html file :-)

@@ -31,7 +31,7 @@ bazel coverage --build_tests_only --compilation_mode=opt --combined_report=lcov 
 ```bash
 lcov --summary /PATH/TO/coverage.dat
 
-genhtml -o /PATH/TO/dustom/output_dir /PATH/TO/coverage.dat
+genhtml -o /PATH/TO/CUSTOM/OUTPUT_DIR /PATH/TO/coverage.dat
 
 firefox /PATH/TO/CUSTOM/OUTPUT_DIR/index.html
 ```

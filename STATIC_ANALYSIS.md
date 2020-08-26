@@ -22,7 +22,7 @@ Running clang-check recursively in the project:
 
 * `find _path/to/project_ -name '*.cpp'|xargs clang-check -analyze`
 
-Use [cppinsights](https://cppinsights.io) for insights on how the code really looks like for the compiler.
+Use [cppinsights.io](https://cppinsights.io) for insights on how the code really looks like for the compiler.
 
 ## **Clang Format**
 

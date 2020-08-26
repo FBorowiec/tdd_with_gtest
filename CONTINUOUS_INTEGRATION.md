@@ -120,7 +120,7 @@ If your Docker container runs on a server you might want to trigger the pipeline
 
 1. Go to your repository settings
 2. Webhooks > Add a webhook
-3. Add the url of your server > [server](http://12.34.56.78:8080/github-webhook/)
+3. Add the url of your server > [http://12.34.56.78:8080/github-webhook/](http://12.34.56.78:8080/github-webhook/)
 4. Content type > application/json
 5. Select just the _push_ event or any other event
 6. Add webhook
