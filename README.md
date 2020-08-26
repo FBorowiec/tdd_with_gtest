@@ -70,6 +70,10 @@ _"Making large changes without tests is like doing aerial gymnastics without a n
 
 ## **Command line arguments**
 
+Running tests with Bazel:
+
+`bazel test --test_output=ALL //path/to/unit:test`
+
 Many command line options available for controlling how tests are run:
 
 * `--gtest_filter` : Regular expressions which indicate which tests should be run in the format of: TestCaseRegEx:TestRegEx
