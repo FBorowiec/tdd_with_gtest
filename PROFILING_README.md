@@ -14,37 +14,33 @@ Valgrind is an instrumentation framework for building dynamic analysis tools. It
 
 ### **Using vallgrind with Bazel**
 
-<code>bazel run --copt='-ggdb, -O0' -c dbg --run_under='valgrind --leak-check=yes' //path/to:target</code>
+`bazel run --copt='-ggdb, -O0' -c dbg --run_under='valgrind --leak-check=yes' //path/to:target`
 
 ### **Callgrind**
 
 Callgrind is a call-graph generating cache and branch prediction profiler.
-To use this tool, you must specify <code>--tool=callgrind</code> on the Valgrind command line.
+To use this tool, you must specify `--tool=callgrind` on the Valgrind command line.
 
-<code>vallgrind --tool=callgrind /path/to/executable</code>
+`vallgrind --tool=callgrind /path/to/executable`
 
 ## **Instalation**
 
-<code>sudo apt install vallgrind callgrind graphviz</code>
+`sudo apt install vallgrind callgrind graphviz`
 
-You can also install <code>gprof2dot</code>. This is a Python script to convert the output from many profilers into a dot graph:
+You can also install `gprof2dot`. This is a Python script to convert the output from many profilers into a dot graph:
 
-<code>git clone https://github.com/jrfonseca/gprof2dot.git</code>
+`git clone https://github.com/jrfonseca/gprof2dot.git`
 
-<code>chmod +x gprof2dot.py</code>
+`chmod +x gprof2dot.py`
 
-#### 1. Create callgrind.out file
+1. Create callgrind.out file:
+`valgrind --tool=callgrind /path/to/executable`
 
-<code>valgrind --tool=callgrind /path/to/executable</code>
+2. Create .dot callmap with gprof2dot:
+`./gprof2dot.py --format=callgrind --output=out.dot callgrind.out.PID`
 
-#### 2. Create .dot callmap with gprof2dot
+3. Convert .dot callmap to .png:
+`dot -Tpng out.dot -o graph.png`
 
-<code>./gprof2dot.py --format=callgrind --output=out.dot callgrind.out.PID</code>
-
-#### 3. Convert .dot callmap to .png
-
-<code>dot -Tpng out.dot -o graph.png</code>
-
-#### 4. Open png file
-
-<code>display graph.png</code>
+4. Open png file:
+`display graph.png`

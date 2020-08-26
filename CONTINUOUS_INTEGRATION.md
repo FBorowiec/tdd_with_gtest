@@ -52,17 +52,17 @@ _You will need to have **Docker** installed on your computer._
 
 Running a docker image containing Jenkins:
 
-* <code>docker run -p 8080:8080 -p 50000:50000 -v /home/\${USER}/\${JENKINS_FOLDER}:/var/jenkins_home _DOCKER_WITH_JENKINS_</code>
+* `docker run -p 8080:8080 -p 50000:50000 -v /home/\${USER}/\${JENKINS_FOLDER}:/var/jenkins_home _DOCKER_WITH_JENKINS_`
 
 E.g.:
 
-* <code>docker run -p 8080:8080 -p 50000:50000 -v /home/\${USER}/jenkins_docker:/var/jenkins_home framaxwlad/jenkins_bazel</code>
+* `docker run -p 8080:8080 -p 50000:50000 -v /home/\${USER}/jenkins_docker:/var/jenkins_home framaxwlad/jenkins_bazel`
 
 Note: _Replace ${USER} with user's home directory._
 
-Jenkins will then be exposed on the server you're running your Docker image or your <code>localhost</code> port <code>8080</code> if you run it locally:
+Jenkins will then be exposed on the server you're running your Docker image or your `localhost` port `8080` if you run it locally:
 
-* <code>firefox http://localhost:8080/</code>
+* `firefox http://localhost:8080/`
 
 ### **Jenkinsfile**
 
@@ -118,7 +118,7 @@ If your Docker container runs on a server you might want to trigger the pipeline
 
 1. Go to your repository settings
 2. Webhooks > Add a webhook
-3. Add the url of your server > <url>http://12.34.56.78:8080/github-webhook/</url>
+3. Add the url of your server > [server](http://12.34.56.78:8080/github-webhook/)
 4. Content type > application/json
 5. Select just the _push_ event or any other event
 6. Add webhook

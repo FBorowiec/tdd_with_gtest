@@ -142,7 +142,7 @@ A SOME/IP packet that contains XML text has the following layers that all need t
 ### **AFL++**
 
 1. AFL is not supported anymore - AFL++ is now community supported
-2. Best fuzzer currently (<url>http://commondatastorage.googleapis.com/fuzzbench-reports/oss-fuzz-benchmarks/index.html</url>)
+2. Best fuzzer currently (![fuzzbench report](http://commondatastorage.googleapis.com/fuzzbench-reports/oss-fuzz-benchmarks/index.html))
 3. AFL++ is very easy to use
 
 ### **Things good to know about AFL**
@@ -240,7 +240,7 @@ docker run -ti -v /tmp:/share aflplusplus/aflplusplus
 ## **How to run fuzzing campaigns**
 
 - Libfuzzer can be run with input arguments:
-  <code>./fuzz output_dir/ input_dir/</code>
+  `./fuzz output_dir/ input_dir/`
 
 ### **Libfuzzer good & bad**
 

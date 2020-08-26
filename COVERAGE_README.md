@@ -12,8 +12,7 @@ Test coverage is a measure used to describe the degree to which the source code 
 
 ## **Instalation**
 
-<code>sudo apt install lcov</code>
-
+`sudo apt install lcov`
 
 ### **Using lcov with Bazel**
 
@@ -21,11 +20,11 @@ Test coverage is a measure used to describe the degree to which the source code 
 bazel coverage --build_tests_only --compilation_mode=opt --combined_report=lcov --coverage_report_generator=@bazel_tools//tools/test/CoverageOutputGenerator/java/com/google/devtools/coverageoutputgenerator:Main --instrument_test_targets=true --javabase=@bazel_tools//tools/jdk:remote_jdk11 --noremote_accept_cached --spawn_strategy=sandboxed //PATH/TO:TARGET
 ```
 
-* <code>--combined_report</code> Specifies lcov as desired cumulative coverage report type.
-* <code>--coverage_report_generator</code> Location of the binary that is used to generate coverage reports.
-* <code>--instrument_test_targets</code> When coverage is enabled, specifies whether to consider instrumenting test rules. When set, test rules included by <code>--instrumentation_filter</code> are instrumented.
-* <code>--javabase</code> JAVABASE used for the JDK invoked by Bazel. This is the java_runtime which will be used to execute external Java commands.
-* <code>--noremote_accept_cached</code> If set to true, <code>--noremote_upload_local_results</code> and <code>--noremote_accept_cached</code> will not apply to the disk cache. If a combined cache is used: <code>--noremote_upload_local_results</code> will cause results to be written to the disk cache, but not uploaded to the remote cache
+* `--combined_report` Specifies lcov as desired cumulative coverage report type.
+* `--coverage_report_generator` Location of the binary that is used to generate coverage reports.
+* `--instrument_test_targets` When coverage is enabled, specifies whether to consider instrumenting test rules. When set, test rules included by `--instrumentation_filter` are instrumented.
+* `--javabase` JAVABASE used for the JDK invoked by Bazel. This is the java_runtime which will be used to execute external Java commands.
+* `--noremote_accept_cached` If set to true, `--noremote_upload_local_results` and `--noremote_accept_cached` will not apply to the disk cache. If a combined cache is used: `--noremote_upload_local_results` will cause results to be written to the disk cache, but not uploaded to the remote cache
 
 ```bash
 lcov --summary /PATH/TO/coverage.dat
