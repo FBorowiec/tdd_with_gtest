@@ -1,6 +1,6 @@
 # TDD with GoogleTest
 
-_Examples of googletest usage for Test Driven Development_
+_"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live."_ - **Martin Golding**
 
 ## **Motivation**
 

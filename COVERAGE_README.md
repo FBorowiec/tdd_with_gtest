@@ -1,5 +1,7 @@
 # Code coverage
 
+_"There are two ways to write error-free programs and only the third one works."_ - **Alan J. Perlis**
+
 ## **Motivation**
 
 Test coverage is a measure used to describe the degree to which the source code of a program is executed when a particular test suite runs. A program with high test coverage, measured as a percentage, has had more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage.

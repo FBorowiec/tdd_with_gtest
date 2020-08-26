@@ -1,5 +1,7 @@
 # Continuous Integration
 
+_"If debugging is the process of removing software bugs, then programming must be the process of putting them in."_ - **Edsger Dijkstra**
+
 ## **Motivation**
 
 When embarking on a change, a developer takes a copy of the current code base on which to work. As other developers submit changed code to the source code repository, this copy gradually ceases to reflect the repository code. Not only can the existing code base change, but new code can be added as well as new libraries, and other resources that create dependencies, and potential conflicts.
