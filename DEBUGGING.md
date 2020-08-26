@@ -47,6 +47,22 @@ Example: `bazel build --copt=-O0 --copt=-ggdb -c=dbg //...`
 Usage:
 [rr usage examples](https://github.com/mozilla/rr/wiki/Usage)
 
+If you encounter the error:
+
+```bash
+rr needs /proc/sys/kernel/perf_event_paranoid <= 1, but it is 3.
+Change it to 1, or use 'rr record -n' (slow).
+Consider putting 'kernel.perf_event_paranoid = 1' in /etc/sysctl.conf
+```
+
+Try:
+
+`sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'`
+
+Then:
+
+`rr record PROGRAM.o && rr replay`
+
 ## **Command line arguments**
 
 1. `gdb` <*executable built with no optimization and in debug mode*>
