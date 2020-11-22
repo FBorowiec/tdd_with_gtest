@@ -82,3 +82,11 @@ int formatted_code;
 // clang-format on
 void formatted_code_again;
 ```
+
+### Bazel buildifier
+
+When Bazel's `buildifier` tool is installed run it on all `BUILD` files with this command:
+
+```bash
+find . -type f -iname BUILD -exec buildifier {} +
+```
