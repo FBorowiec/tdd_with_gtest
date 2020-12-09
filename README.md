@@ -2,6 +2,8 @@
 
 _"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live."_ - **Martin Golding**
 
+This is the repository where I keep all the relevant information about Test Driven Development with C++ and GTest.
+
 ## **Motivation**
 
 It is necessary to have a multilayered safety net of test in place that will catch any bugs that might get introduced.
