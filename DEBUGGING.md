@@ -63,6 +63,19 @@ Then:
 
 `rr record PROGRAM.o && rr replay`
 
+**rr** allows for a very easy catch of places where core dumps occur. This can be done once the within the replay session by using the `catch signal throw` command and reversing to the previous statement:
+
+```bash
+catch signal SIGINT
+run
+```
+
+And after the core dump occurring:
+
+```bash
+reverse-next
+```
+
 ## **Command line arguments**
 
 1. `gdb` <*executable built with no optimization and in debug mode*>
