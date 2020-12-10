@@ -70,6 +70,39 @@ _"Making large changes without tests is like doing aerial gymnastics without a n
 * Provides the ability to create Tests, Test Cases and Test Suites (Fixtures)
 * Provides several types of assert macros for generating unit test failures based on boolean, binary and string comparisons
 
+## How to run the code locally with *Bazel* already installed on host
+
+### Bazel installation
+
+[Install Bazel](https://docs.bazel.build/versions/master/install.html)
+
+Once you have successfully installed *Bazel* you can run the code using:
+
+```bash
+bazel test //tdd_examples/...
+```
+
+## Run the code inside a container
+
+You can use my following Docker image to instantiate a container locally with Ubuntu and Bazel already installed:
+
+```bash
+docker run -it --rm framaxwlad/ubuntu_dev:latest
+```
+
+There you can simply clone the repository:
+
+```bash
+git clone https://github.com/FBorowiec/tdd_with_gtest.git
+cd tdd_with_gtest/
+```
+
+And use the aforementioned commands to run the program:
+
+```bash
+bazel test //tdd_examples/...
+```
+
 ## **Command line arguments**
 
 Running tests with Bazel:
