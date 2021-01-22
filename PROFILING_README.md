@@ -14,7 +14,7 @@ Valgrind is an instrumentation framework for building dynamic analysis tools. It
 
 ### **Using vallgrind with Bazel**
 
-`bazel run --copt='-ggdb, -O0' -c dbg --run_under='valgrind --leak-check=yes' //path/to:target`
+`bazel run --copt=-O0 -c dbg --run_under='valgrind --leak-check=yes' //path/to:target`
 
 ### **Callgrind**
 
