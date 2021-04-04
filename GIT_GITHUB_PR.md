@@ -46,6 +46,36 @@ Detail with what was changed, why it was changed, and how it was changed.
 
 With this number in mind, a good pull request should not have more than 250 lines of code changed
 
+### **How to modify a specified commit**
+
+You can use git rebase. For example, if you want to modify commit `bbc643cd`, run
+
+```bash
+git rebase --interactive 'bbc643cd^'
+```
+
+Please note the caret `^` at the end of the command, because you need actually to rebase back to the commit before the one you wish to modify.
+
+In the default editor, modify pick to edit in the line mentioning `bbc643cd`.
+
+Save the file and exit: git will interpret and automatically execute the commands in the file. You will find yourself in the previous situation in which you just had created commit `bbc643cd`.
+
+At this point, `bbc643cd` is your last commit and you can easily amend it: make your changes and then commit them with the command:
+
+```bash
+git commit --all --amend --no-edit
+```
+
+After that, type:
+
+```bash
+git rebase --continue
+```
+
+to return back to the previous HEAD commit.
+
+**WARNING**: Note that this will change the `SHA-1` of that commit as well as all children - in other words, this rewrites the history from that point forward. You can break repositories doing this if you push using the command `git push --force`.
+
 ### **Other _git_ tips**
 
 To recursively update a ws:
