@@ -29,7 +29,7 @@ Avoid stacking up commits regarding different issues on a PR. Break it down into
 To unstage all modifications on a branch:
 
 ```cpp
-git reset $(git merge-base master BRANCH)
+git reset $(git merge-base origin/master $(git branch --show-current))
 ```
 
 ### **Title**
