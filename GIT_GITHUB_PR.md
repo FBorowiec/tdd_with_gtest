@@ -22,14 +22,14 @@ Avoid stacking up commits regarding different issues on a PR. Break it down into
 
 ## **Tips and tricks for having a clean PR**
 
-I personally like to take a break once the work on a branch is done and review everything that has been writOne Issue — One PR
+One Issue — One PR
 
-Avoid stacking up commits regarding different issues on a PR. Break it down into two or more PRs. It is always a good practice to create an issue and go parallel with that.ten so far. A useful thing might be unstaging everything that has been commited and re-commit in clean single commits chunks of code that go well together. Then the reviewers might look at the commit and have a clean liner view of the evolution of the branch.
+Avoid stacking up commits regarding different issues on a PR. Break it down into two or more PRs. It is always a good practice to create an issue and go parallel with that. A useful thing might be unstaging everything that has been commited and re-commit in clean single commits chunks of code that go well together. Then the reviewers might look at the commit and have a clean liner view of the evolution of the branch.
 
 To unstage all modifications on a branch:
 
 ```cpp
-git reset $(git merge-base master BRANCH)
+git reset $(git merge-base origin/master $(git branch --show-current))
 ```
 
 ### **Title**
