@@ -56,7 +56,7 @@ git rebase --interactive 'bbc643cd^'
 
 Please note the caret `^` at the end of the command, because you need actually to rebase back to the commit before the one you wish to modify.
 
-In the default editor, modify pick to edit in the line mentioning `bbc643cd`.
+In the default editor, modify `pick` to `edit` in the line mentioning `bbc643cd`.
 
 Save the file and exit: git will interpret and automatically execute the commands in the file. You will find yourself in the previous situation in which you just had created commit `bbc643cd`.
 

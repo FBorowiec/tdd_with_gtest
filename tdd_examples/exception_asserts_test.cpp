@@ -3,6 +3,7 @@
  * when any exception is not thrown of when an
  * exception is thrown and non was expected.
  */
+#include <stdlib.h>
 #include <bitset>
 #include <iostream>
 #include <stdexcept>
