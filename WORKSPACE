@@ -8,6 +8,6 @@ git_repository(
 
 git_repository(
     name = "rules_cc",
-    branch = "master",
+    branch = "main",
     remote = "https://github.com/bazelbuild/rules_cc",
 )
