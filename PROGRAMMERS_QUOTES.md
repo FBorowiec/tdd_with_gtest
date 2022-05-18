@@ -61,3 +61,5 @@ with no structural integrity, but just done by brute force and thousands of slav
 *"C makes it easy to shoot yourself in the foot. C++ makes it harder, but when you do it blows your whole leg off."* - **B.Stroustrup**
 
 *"In a world without walls, who needs Windows?"* - **L.Torvalds**
+
+*"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."* - **Antoine de Saint-Exupery**
